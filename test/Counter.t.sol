@@ -1,24 +1,24 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity ^0.8.7;
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+contract MyContract is ERC20{
+    address public admin;
 
-import "forge-std/Test.sol";
-import "../src/Counter.sol";
-
-contract CounterTest is Test {
-    Counter public counter;
-
-    function setUp() public {
-        counter = new Counter();
-        counter.setNumber(0);
+    constructor() ERC20('Marko Token','MTN') payable{
+        _mint(msg.sender,10000 * 10 ** 18);
+        admin = msg.sender;
     }
+    //vaka ustvari gi prefrlam tokenite na mojot wallet
 
-    function testIncrement() public {
-        counter.increment();
-        assertEq(counter.number(), 1);
+    function mint(address to, uint amount) external{
+        require(msg.sender == admin,'only admin');
+        _mint(to,amount);
     }
+    //so prae voa?? dali primer jas ako sum admin mozam da mu dadam tokeni na viktor so ne se od prviot totalsuply
 
-    function testSetNumber(uint256 x) public {
-        counter.setNumber(x);
-        assertEq(counter.number(), x);
+    function burn(uint amount) external{
+        _burn(msg.sender,amount);
     }
+    //malku da go rascackame voa
+
 }
