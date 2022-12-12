@@ -2,5 +2,7 @@
 src = 'src'
 out = 'out'
 libs = ['lib']
+remappings = ["op/=lib/openzeppelin-contracts","@openzeppelin/=lib/openzeppelin-contracts"]
+etherscan_api_key = "BD8B77QWW3ZR5A9X57XCBZK4R18QZDDXW5"
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
